@@ -2,23 +2,29 @@ const Twit = require('twit');
 const twitConfig = require('../config/twit-config');
 var T = new Twit(twitConfig)
 
-console.log("app is starting...")
+module.exports = {
+    landing(req, res, next){
+        res.render("static/landing")
+    },
+    search(req, res, next){
+        var params = {
+            q: req.body.search,
+            count: req.body.count
+        }
 
-var params = {
-    q: 'trump',
-    count: 100
-}
+        function returnData( err, data, response){
+            if(err){
+                console.log(err)
+            } else {
+                var tweets = data.statuses;
+                res.redirect("/results", {tweets})
+            }
+        }
 
-function returnData( err, data, response){
-    var tweets = data.statuses;
-    console.log("data is....")
-    console.log(data)
-    console.log("data ended....")
-    for(var i=0; i<tweets.length; i++){
-        console.log("Tweet " + [i+1] + " is......");
-        console.log(tweets[i].text);
-        console.log("");
+        T.get('search/tweets', params, returnData)
     }
 }
 
-T.get('search/tweets', params, returnData)
+
+
+
