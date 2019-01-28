@@ -4,7 +4,14 @@ var T = new Twit(twitConfig)
 
 module.exports = {
     landing(req, res, next){
-        res.render("static/landing")
+        console.log("landing function is starting...")
+        if(err){
+            console.log(err)
+        } else {
+            console.log("no landing error...");
+            res.render("static/landing");
+        }
+        
     },
     search(req, res, next){
         var params = {
