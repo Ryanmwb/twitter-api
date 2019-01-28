@@ -17,11 +17,13 @@ module.exports = {
                 console.log(err)
             } else {
                 var tweets = data.statuses;
-                res.redirect("/results", {tweets})
+                res.render("/results", {tweets})
             }
         }
 
         T.get('search/tweets', params, returnData)
+
+        res.render("static/landing")
     }
 }
 

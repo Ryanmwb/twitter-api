@@ -2,11 +2,13 @@
 const express = require("express");
 const app = express();
 const appConfig = require("./config/main-config.js")
-const routeConfig = require("./config/route-config.js");
+const router = express.Router();
+const twitterController = require("../controllers/twitter");
+
+router.get("/", twitterController.landing)
 
 app.use(require("body-parser").urlencoded({extended: false}));
 
 appConfig.init(app, express);
-routeConfig.init(app);
 
 module.exports = app;
