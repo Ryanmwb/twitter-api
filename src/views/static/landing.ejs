@@ -37,12 +37,14 @@
         /*var word = $("#searchCriteria").text();
         var number = $("#tweets").text();
         if(word != null && number != null){*/
-        $("#submit").click(() => {
+        $("#submit").click((e) => {
+            //e.preventDefault();
             $.ajax({
                 method: 'GET',
                 accept: 'application/json',
                 url: "/tweets",
                 success: function(data, textStatus, xhr) {
+                    window.location.href = '/tweets'
                     console.log(data)
                 },
                 error: function(){
