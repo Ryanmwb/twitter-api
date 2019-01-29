@@ -3,7 +3,8 @@ body {
   }
 
   #container{
-    border-radius: 20px;
+    border-radius: 23px;
+    margin: 0 10px;
   }
 
   #form{
