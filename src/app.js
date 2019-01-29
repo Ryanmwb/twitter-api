@@ -7,11 +7,10 @@ const twitterController = require("./controllers/twitterController");
 
 app.use(require("body-parser").urlencoded({extended: false}));
 
+appConfig.init(app, express);
+
 app.get("/", twitterController.landing)
 app.get("/tweets", twitterController.search)
 
-
-
-appConfig.init(app, express);
 
 module.exports = app;
