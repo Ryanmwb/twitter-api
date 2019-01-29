@@ -11,6 +11,9 @@ module.exports = {
         var word = req.params.word;
         var number = req.params.number;
 
+        console.log("number is.....");
+        console.log(number);
+
         if(word.split(" ").length > 1){
             res.flash("notice", "You can only search one word at a time.")
             res.redirect("/")
@@ -19,8 +22,6 @@ module.exports = {
             res.flash("notice", "Number must be 50 or lower.")
             res.redirect("/")
         }
-
-        console.log(req.params)
 
         var params = {
             q: word,
@@ -32,6 +33,8 @@ module.exports = {
                 console.log(err)
             } else {
                 var tweets = data.statuses;
+                console.log("tweets are....")
+                console.log(tweets)
                 res.json({tweets})
             }
         }
