@@ -9,8 +9,21 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
 <body class="bg-light">
-    <main class="pt-5">
-        <h1 class="display-3 text-center">Twitter Search <img src="../../assets/twitter.png"></h1>
+    <main class="container bg-info" id="container">
+        <h1 class="display-3 text-center text-white pt-3">Twitter Search <img src="../../assets/twitter.png" alt="twitter logo"></h1>
+        <form action="" class="ml-auto mr-auto pb-5" id="form">
+            <div class="form-group row">
+                <div class="col-8">
+                    <label class="text-white" for="searchCriteria">Search Criteria</label>
+                    <input class="form-control" id="searchCriteria" placeholder="Search word">
+                    <small class="form-text text-light">Type in one word to search</small>
+                </div>
+                <div class="col-4 mt-auto">
+                    <input class="form-control" id="tweets" placeholder="# of Tweets">
+                    <small class="form-text text-light">Choose up to 50</small>
+                </div>
+            </div>
+        </form>
     </main>
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
