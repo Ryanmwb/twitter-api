@@ -11,7 +11,7 @@
 <body class="bg-light">
     <main class="container bg-info" id="container">
         <h1 class="display-3 text-center text-white pt-3">Twitter Search <img id="logo" src="twitter.png" alt="twitter logo"></h1>
-        <form action="/tweets" class="ml-auto mr-auto pb-3" id="form">
+        <form action=""  class="ml-auto mr-auto pb-3" id="form">
             <div class="form-group row">
                 <div class="col-lg-8 col-md-12 pt-2">
                     <label class="text-white pb-1" for="searchCriteria">Search Criteria</label>
@@ -23,14 +23,34 @@
                     <small class="form-text text-light">Choose up to 50</small>
                 </div>
             </div>
-            <button type="submit" class="btn btn-light">Submit</button>
+            <button id="submit" class="btn btn-light">Submit</button>
         </form>
+
     </main>
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <!--<div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
+
+    <script>
+        $("#submit").click(() => {
+            $.ajax({
+                method: 'GET',
+                accept: 'application/json',
+                url: "/tweets",
+                success: function(data, textStatus, xhr) {
+                    console.log(data)
+                },
+                error: function(){
+
+                }
+            })
+
+            $("#searchCriteria").text("")
+            $("#tweets").text("")            
+        })
+    </script>
 </body>
 </html>
 

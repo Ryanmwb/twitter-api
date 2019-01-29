@@ -7,13 +7,10 @@ module.exports = {
             res.render("static/landing");
     },
     search(req, res, next){
-        console.log(req.body)
         var word = req.body.word;
         var number = req.body.number;
-        console.log(word);
-        console.log(number)
 
-        /*var params = {
+        var params = {
             q: word,
             count: number
         }
@@ -23,13 +20,11 @@ module.exports = {
                 console.log(err)
             } else {
                 var tweets = data.statuses;
-                res.render("/results", {tweets})
+                res.json({tweets})
             }
         }
 
-        T.get('search/tweets', params, returnData)
-
-        res.render("static/landing")*/
+        T.get('search/tweets', params, returnData);
     }
 }
 
