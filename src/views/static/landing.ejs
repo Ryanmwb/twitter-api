@@ -37,7 +37,7 @@
         
         
         $("#submit").click((e) => {
-            //e.preventDefault();
+            e.preventDefault();
             var word = $("#searchCriteria").val();
             var number = $("#tweets").val();
             console.log("word value is...")
@@ -45,7 +45,7 @@
             $.ajax({
                 method: 'GET',
                 accept: 'application/json',
-                url: "/tweets/<%= word %>/<%= number %>",
+                url: `/tweets/${word}/${number}`,
                 success: function(data, textStatus, xhr) {
                     window.location.href = '/tweets'
                     console.log(data)
