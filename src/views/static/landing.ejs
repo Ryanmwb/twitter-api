@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Tweets Search</title>
+    <title>Twitter Search</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/css/application.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -34,6 +34,9 @@
     <!--<div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
 
     <script>
+        /*var word = $("#searchCriteria").text();
+        var number = $("#tweets").text();
+        if(word != null && number != null){*/
         $("#submit").click(() => {
             $.ajax({
                 method: 'GET',
@@ -43,13 +46,14 @@
                     console.log(data)
                 },
                 error: function(){
-
+                    console.log("error");
                 }
             })
-
             $("#searchCriteria").text("")
             $("#tweets").text("")            
         })
+       // }
+        
     </script>
 </body>
 </html>

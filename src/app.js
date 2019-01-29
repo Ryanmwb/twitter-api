@@ -10,7 +10,7 @@ app.use(require("body-parser").urlencoded({extended: false}));
 appConfig.init(app, express);
 
 app.get("/", twitterController.landing)
-app.post("/tweets", twitterController.search)
+app.get("/tweets", twitterController.search)
 
 
 module.exports = app;
