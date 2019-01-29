@@ -5,12 +5,17 @@ var T = new Twit(twitConfig)
 module.exports = {
     landing(req, res, next){
             res.render("static/landing");
-        
     },
     search(req, res, next){
-        var params = {
-            q: req.body.search,
-            count: req.body.count
+        console.log(req.body)
+        var word = req.body.word;
+        var number = req.body.number;
+        console.log(word);
+        console.log(number)
+
+        /*var params = {
+            q: word,
+            count: number
         }
 
         function returnData( err, data, response){
@@ -24,7 +29,7 @@ module.exports = {
 
         T.get('search/tweets', params, returnData)
 
-        res.render("static/landing")
+        res.render("static/landing")*/
     }
 }
 
