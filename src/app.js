@@ -11,6 +11,7 @@ appConfig.init(app, express);
 
 app.get("/", twitterController.landing)
 app.get("/tweets", twitterController.search)
+app.get("/tweets/:word/:number", twitterController.search)
 
 
 module.exports = app;
