@@ -9,6 +9,25 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     </head>
     <body class="bg-light">
+        <!-- Error Messages
+        <% if(messages.error || messages.notice) { %>
+            <div class="mt-2 alert alert-<%= messages.error ? 'danger' : 'warning' %> alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                <% if(messages.error) { %>
+                Validation errors:
+                <ul>
+                <% messages.error.forEach((err) => { %>
+                    <li><%= `${err.param} ${err.msg}` %></li>
+                <% }) %>
+                </ul>
+                <% } else { %>
+                <p><%= messages.notice %></p>
+                <% } %>
+            </div>
+        <% } %> -->
+
         <main class="container bg-info" id="container">
             <h1 class="display-3 text-center text-white pt-3">Twitter Search <img id="logo" src="twitter.png" alt="twitter logo"></h1>
             <form action=""  class="ml-auto mr-auto pb-3" id="form">
@@ -27,12 +46,15 @@
             </form>
         </main>
 
-        <div id="response">
+        <div class="container" id="response">
         </div>
 
         <template id="itemTemplate">
-            <div class="tweet">
-                <div class="user-name"></div>
+            <div class="tweet mt-3 mb-3 pt-2 pb-2">
+                <div class="row">
+                    <div class="name pr-2 font-weight-bold"></div>
+                    <a class="user-name text-muted"></a>
+                </div>
                 <div class="text"></div>
             </div>
         </template>
@@ -56,20 +78,20 @@
                     accept: 'application/json',
                     url: `/tweets/${word}/${number}`,
                     success: function(data, textStatus, xhr){
-                        console.log("success! data is....")
-                        console.log(data);
-
                         var response = $('#response');
                         var clone = $('#itemTemplate').clone().html();
                         response.empty();
+
+                        console.log(data)
 
                         data.data.statuses.forEach(function(status) {
                             var $item = $(clone);
 
                             var text = status.text;
                             text = text.replace(/(\@)(\w+\b)/g, '<a href="https://twitter.com/$2" target="_blank">@$2</a>');
-
-                            $item.find('.user-name').text(status.user.name);
+                            
+                            $item.find('.name').text(status.user.name);
+                            $item.find('.user-name').html(`<a href='https://twitter.com/${status.user.screen_name}' class='user-name text-muted'>@${status.user.screen_name}</a>`)
                             $item.find('.text').html(text);
 
                             response.append($item);

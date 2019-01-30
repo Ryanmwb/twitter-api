@@ -14,11 +14,11 @@ module.exports = {
         console.log(number);
 
         if(word.split(" ").length > 1){
-            res.flash("notice", "You can only search one word at a time.")
+            req.flash("notice", "You can only search one word at a time.")
             res.redirect("/")
         }
         if(number > 50  || number < 1){
-            res.flash("notice", "Number must be 50 or lower.")
+            req.flash("notice", "Number must be 50 or lower.")
             res.redirect("/")
         }
 

@@ -6,7 +6,6 @@ const router = express.Router();
 const twitterController = require("./controllers/twitterController");
 
 app.use(require("body-parser").urlencoded({extended: false}));
-
 appConfig.init(app, express);
 
 app.get("/", twitterController.landing)
