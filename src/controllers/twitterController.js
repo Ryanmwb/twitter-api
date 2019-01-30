@@ -18,8 +18,8 @@ module.exports = {
             res.redirect("/")
         }
         if(number > 50  || number < 1){
-            req.flash("notice", "Number must be 50 or lower.")
             res.redirect("/")
+            req.flash("notice", "Number must be 50 or lower.")
         }
 
         var params = {

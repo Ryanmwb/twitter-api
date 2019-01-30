@@ -49,12 +49,12 @@
         </div>
 
         <template id="itemTemplate">
-            <div class="tweet mt-3 mb-3 pt-2 pb-2">
-                <div class="row">
-                    <div class="name pr-2 font-weight-bold"></div>
-                    <a class="user-name text-muted"></a>
+            <div class="tweet bg-primary mt-3 mb-3 pt-2 pb-2">
+                <div class="row ml-4">
+                    <div class="name mr-2 text-white font-weight-bold"></div>
+                    <a class="user-name"></a>
                 </div>
-                <div class="text"></div>
+                <div class="text ml-4 mr-4 text-light"></div>
             </div>
         </template>
         
@@ -87,10 +87,10 @@
                             var $item = $(clone);
 
                             var text = status.text;
-                            text = text.replace(/(\@)(\w+\b)/g, '<a href="https://twitter.com/$2" target="_blank">@$2</a>');
+                            text = text.replace(/(\@)(\w+\b)/g, '<a href="https://twitter.com/$2" class="text-light" target="_blank">@$2</a>');
                             
                             $item.find('.name').text(status.user.name);
-                            $item.find('.user-name').html(`<a href='https://twitter.com/${status.user.screen_name}' class='user-name text-muted'>@${status.user.screen_name}</a>`)
+                            $item.find('.user-name').html(`<a href='https://twitter.com/${status.user.screen_name}' class='user-name text-light'>@${status.user.screen_name}</a>`)
                             $item.find('.text').html(text);
 
                             response.append($item);
