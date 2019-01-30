@@ -9,47 +9,22 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     </head>
     <body class="bg-light">
-        <script>
-            function validateForm() {
-                var word = document.forms["form"]["word"].value;
-                var number = document.forms["form"]["number"].value;
-                console.log("word is...")
-                console.log(word)
-
-                if(word.length < 1){
-                    alert("Search word can't be blank.");
-                    return false;
-                }
-                if(number < 1 || number > 100){
-                    alert("Number must be between 1 and 100");
-                    return false;
-                }
-                if(word.split(" ").length > 1){
-                    alert("You can only search one word at a time");
-                    return false;
-                }
-                if(number.split(".").length > 1){
-                    alert("Number cannot be a decimal");
-                    return false;
-                }
-            }
-        </script>
 
         <main class="container bg-info" id="container">
             <h1 class="display-3 text-center text-white pt-3">Twitter Search <img id="logo" src="twitter.png" alt="twitter logo"></h1>
-            <form method="POST" onsubmit="return validateForm()" name="form"  class="ml-auto mr-auto pb-3" id="form">
+            <form name="form"  class="ml-auto mr-auto pb-3" id="form">
                 <div class="form-group row">
                     <div class="col-lg-8 col-md-12 pt-2">
                         <label class="text-white pb-1" for="searchCriteria">Search Criteria</label>
-                        <input class="form-control" id="searchCriteria" name="word" placeholder="Search word">
-                        <small class="form-text text-light">Type in one word to search</small>
+                        <input class="form-control" id="searchCriteria" name="word" placeholder="Enter Text">
+                        <small class="form-text text-light">Text search</small>
                     </div>
                     <div class="col-lg-4 col-md-12 mt-auto pt-3">
-                        <input class="form-control" name="number" id="tweets" placeholder="# of Tweets">
-                        <small class="form-text text-light">Choose up to 50</small>
+                        <input class="form-control" name="number" id="tweets" placeholder="Enter Number" min="1" max="200">
+                        <small class="form-text text-light">Choose up to 200 tweets</small>
                     </div>
                 </div>
-                <button id="submit" class="btn bg-white">Submit</button>
+                <button id="submit" type="submit" value="submit" class="btn bg-white">Submit</button>
             </form>
         </main>
 
@@ -79,6 +54,14 @@
                 e.preventDefault();
                 var word = $("#searchCriteria").val();
                 var number = $("#tweets").val();
+                if(number < 1 || number > 200){
+                    alert("Number must be between 1 and 200");
+                    return false;
+                }
+                if(word.length < 1){
+                    alert("Text cannot be empty");
+                    return false;
+                }
 
                 console.log("sumbit was clicked")
 
