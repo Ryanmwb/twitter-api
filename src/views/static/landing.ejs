@@ -9,27 +9,35 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     </head>
     <body class="bg-light">
-        <% if(messages.error || messages.notice) { %>
-            <div class="mt-2 alert alert-<%= messages.error ? 'danger' : 'warning' %> alert-dismissible fade show" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-                <% if(messages.error) { %>
-                Validation errors:
-                <ul>
-                <% messages.error.forEach((err) => { %>
-                    <li><%= `${err.param} ${err.msg}` %></li>
-                <% }) %>
-                </ul>
-                <% } else { %>
-                <p><%= messages.notice %></p>
-                <% } %>
-            </div>
-        <% } %> 
+        <script>
+            function validateForm() {
+                var word = document.forms["form"]["word"].value;
+                var number = document.forms["form"]["number"].value;
+                console.log("word is...")
+                console.log(word)
+
+                if(word.length < 1){
+                    alert("Search word can't be blank.");
+                    return false;
+                }
+                if(number < 1 || number > 100){
+                    alert("Number must be between 1 and 100");
+                    return false;
+                }
+                if(word.split(" ").length > 1){
+                    alert("You can only search one word at a time");
+                    return false;
+                }
+                if(number.split(".").length > 1){
+                    alert("Number cannot be a decimal");
+                    return false;
+                }
+            }
+        </script>
 
         <main class="container bg-info" id="container">
             <h1 class="display-3 text-center text-white pt-3">Twitter Search <img id="logo" src="twitter.png" alt="twitter logo"></h1>
-            <form action=""  class="ml-auto mr-auto pb-3" id="form">
+            <form method="POST" onsubmit="return validateForm()" name="form"  class="ml-auto mr-auto pb-3" id="form">
                 <div class="form-group row">
                     <div class="col-lg-8 col-md-12 pt-2">
                         <label class="text-white pb-1" for="searchCriteria">Search Criteria</label>
