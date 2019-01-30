@@ -1,67 +1,89 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Twitter Search</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/css/application.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-</head>
-<body class="bg-light">
-    <main class="container bg-info" id="container">
-        <h1 class="display-3 text-center text-white pt-3">Twitter Search <img id="logo" src="twitter.png" alt="twitter logo"></h1>
-        <form action=""  class="ml-auto mr-auto pb-3" id="form">
-            <div class="form-group row">
-                <div class="col-lg-8 col-md-12 pt-2">
-                    <label class="text-white pb-1" for="searchCriteria">Search Criteria</label>
-                    <input class="form-control" id="searchCriteria" name="word" placeholder="Search word">
-                    <small class="form-text text-light">Type in one word to search</small>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Twitter Search</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="/css/application.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    </head>
+    <body class="bg-light">
+        <main class="container bg-info" id="container">
+            <h1 class="display-3 text-center text-white pt-3">Twitter Search <img id="logo" src="twitter.png" alt="twitter logo"></h1>
+            <form action=""  class="ml-auto mr-auto pb-3" id="form">
+                <div class="form-group row">
+                    <div class="col-lg-8 col-md-12 pt-2">
+                        <label class="text-white pb-1" for="searchCriteria">Search Criteria</label>
+                        <input class="form-control" id="searchCriteria" name="word" placeholder="Search word">
+                        <small class="form-text text-light">Type in one word to search</small>
+                    </div>
+                    <div class="col-lg-4 col-md-12 mt-auto pt-3">
+                        <input class="form-control" name="number" id="tweets" placeholder="# of Tweets">
+                        <small class="form-text text-light">Choose up to 50</small>
+                    </div>
                 </div>
-                <div class="col-lg-4 col-md-12 mt-auto pt-3">
-                    <input class="form-control" name="number" id="tweets" placeholder="# of Tweets">
-                    <small class="form-text text-light">Choose up to 50</small>
-                </div>
+                <button id="submit" class="btn bg-white">Submit</button>
+            </form>
+        </main>
+
+        <div id="response">
+        </div>
+
+        <template id="itemTemplate">
+            <div class="tweet">
+                <div class="user-name"></div>
+                <div class="text"></div>
             </div>
-            <button id="submit" class="btn btn-light">Submit</button>
-        </form>
-
-    </main>
-    
-    <script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-    <!--<div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
-
-    <script>
+        </template>
         
-        
-        $("#submit").click((e) => {
-            e.preventDefault();
-            var word = $("#searchCriteria").val();
-            var number = $("#tweets").val();
-            $.ajax({
-                method: 'GET',
-                accept: 'application/json',
-                url: `/tweets/${word}/${number}`,
-                success: function(data, textStatus, xhr) {
-                    console.log("success! data is....")
-                    console.log(data)
-                },
-                error: function(){
-                    console.log("error");
-                }
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <!--<div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
+        <script>
+            $("#submit").click((e) => {
+                e.preventDefault();
+                var word = $("#searchCriteria").val();
+                var number = $("#tweets").val();
+
+                $.ajax({
+                    method: 'GET',
+                    accept: 'application/json',
+                    url: `/tweets/${word}/${number}`,
+                    success: function(data, textStatus, xhr){
+                        console.log("success! data is....")
+                        console.log(data);
+
+                        var response = $('#response');
+                        var clone = $('#itemTemplate').clone().html();
+                        response.empty();
+
+                        data.data.statuses.forEach(function(status) {
+                            var $item = $(clone);
+
+                            var text = status.text;
+                            text = text.replace(/(\@)(\w+\b)/g, '<a href="https://twitter.com/$2" target="_blank">@$2</a>');
+
+                            $item.find('.user-name').text(status.user.name);
+                            $item.find('.text').html(text);
+
+                            response.append($item);
+                        });
+                    },
+                    error: function(){
+                        console.log("error");
+                    }
+                })
+                $("#searchCriteria").val("")
+                $("#tweets").val("")            
             })
-            $("#searchCriteria").text("")
-            $("#tweets").text("")            
-        })
-       // }
-        
-    </script>
-</body>
+        </script>
+    </body>
 </html>
 
 <!--

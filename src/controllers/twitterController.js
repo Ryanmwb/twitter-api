@@ -7,7 +7,6 @@ module.exports = {
             res.render("static/landing");
     },
     search(req, res, next){
-        console.log(req.body)
         var word = req.params.word;
         var number = req.params.number;
 
@@ -32,10 +31,10 @@ module.exports = {
             if(err){
                 console.log(err)
             } else {
-                var tweets = data.statuses;
+                /*var tweets = data.statuses;
                 console.log("tweets are....")
-                console.log(tweets)
-                res.json({tweets})
+                console.log(tweets)*/
+                res.json({data})
             }
         }
 
