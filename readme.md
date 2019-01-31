@@ -18,4 +18,4 @@ A mobile friendly SPA that searches twitter for tweets containing text of your c
 ### If you are cloning this repo you will need to:
 1) create a `.env` file in the root directory
 2) create a `secret` variable in the `.env` file and give it a value of your choosing. Ex) `secret='65486431'`
-3) get twitter API keys and access tokens.  Instructions here --> https://developer.twitter.com/en/docs/basics/authentication/guides/securing-keys-and-tokens.html
+3) get twitter API keys and access tokens and add them to the `.env` file.  Instructions here --> https://developer.twitter.com/en/docs/basics/authentication/guides/securing-keys-and-tokens.html
