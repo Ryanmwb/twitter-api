@@ -5,6 +5,7 @@ A mobile friendly SPA that searches twitter for tweets containing text of your c
 * HTML5/CSS
 * Bootstrap 
 * Javascript
+* REGEX
 * Node
 * Jquery/AJAX
 
